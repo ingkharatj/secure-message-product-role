@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Message</title>
+    <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+<div class="container">
+    <h1>All Messages</h1>
+
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <a class="btn btn-primary" th:href="@{/post}">Post Message</a>
+    </div>
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th>User</th>
+            <th>Text</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="message : ${messages}">
+            <td th:text="${message.user}"></td>
+            <td th:text="${message.text}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
